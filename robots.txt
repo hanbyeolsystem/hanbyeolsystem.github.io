@@ -1,0 +1,5 @@
+# 모든 검색엔진·AI 수집기 허용. (지금은 견본이라 index.html 의 noindex 가 검색 등록을 막고 있음)
+User-agent: *
+Allow: /
+
+Sitemap: https://hanbyeolsystem.github.io/sitemap.xml
