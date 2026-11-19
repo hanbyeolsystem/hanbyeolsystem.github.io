@@ -1,0 +1,5 @@
+# 홈페이지에 안 쓰는 것은 올리지 않음
+재료.txt
+사진/
+images/lan-work.jpg
+__pycache__/

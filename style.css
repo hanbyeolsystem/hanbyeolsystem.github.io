@@ -1,0 +1,337 @@
+/* 제목·전화번호: 페이퍼로지 / 본문: 수트(index.html에서 불러옴) */
+@font-face {
+  font-family: 'Paperlogy';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Paperlogy';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-8ExtraBold.woff2') format('woff2');
+  font-weight: 800;
+  font-display: swap;
+}
+
+/* 색은 로고 육각형에서 뽑음. 노랑은 전화 단추에만 쓴다 */
+:root {
+  --ink: #0A3352;      /* 남색: 제목, 첫 화면·연락처 바탕 */
+  --ink-2: #3B5468;    /* 본문 글자 */
+  --blue: #0077C0;     /* 로고 파랑: 링크 */
+  --sky: #33B6F5;      /* 로고 하늘: 남색 위 작은 강조 */
+  --ice: #E6F4FC;      /* 옅은 면 바탕 */
+  --rule: #C9E3F2;     /* 구분선 */
+  --sun: #FFC83D;      /* 전화 단추 */
+  --on-ink: #CFE6F5;   /* 남색 위 본문 */
+  --display: 'Paperlogy', 'SUIT', sans-serif;
+  --body: 'SUIT', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--body);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--ink-2);
+  background: #fff;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  padding-bottom: calc(4rem + env(safe-area-inset-bottom)); /* 아래 전화 막대 자리 */
+}
+
+img { display: block; max-width: 100%; height: auto; }
+figure, p { margin: 0; }
+a { color: var(--blue); text-underline-offset: .2em; }
+
+h1, h2, h3 {
+  margin: 0;
+  font-family: var(--display);
+  color: var(--ink);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+.hero :focus-visible, .contact :focus-visible { outline-color: var(--sun); }
+
+.wrap { max-width: 72rem; margin: 0 auto; padding: 0 1.25rem; }
+
+/* ── 머리글 ── */
+.top { border-bottom: 1px solid var(--rule); }
+.top-in {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 3.75rem;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+/* 로고 그림 아래 글씨는 잘라내고 육각형만 보임 */
+.brand img { width: 2.25rem; aspect-ratio: 1221 / 1057; object-fit: cover; object-position: top; }
+
+.menu {
+  display: flex;
+  gap: 1.25rem;
+  width: calc(100% + 2.5rem);
+  margin: 0 -1.25rem;
+  padding: 0 1.25rem;
+  overflow-x: auto;
+  border-top: 1px solid var(--rule);
+  scrollbar-width: none;
+}
+.menu a {
+  padding: .7rem 0;
+  white-space: nowrap;
+  font-size: .95rem;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+}
+.menu a:hover { color: var(--blue); }
+.top .call { display: none; }
+
+/* ── 전화 단추 ── */
+.call {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  background: var(--sun);
+  color: var(--ink);
+  font-family: var(--display);
+  font-weight: 800;
+  text-decoration: none;
+  border-radius: .5rem;
+}
+.call:hover { background: #FFD666; }
+.call svg, .callbar svg { width: .8em; height: .8em; flex: none; fill: currentColor; }
+.call-sm { padding: .55rem .9rem; font-size: 1rem; }
+.call-lg {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: .2rem;
+  width: 100%;
+  margin-top: 1.75rem;
+  padding: 1rem 1.25rem 1.1rem;
+}
+.call-num {
+  display: flex;
+  align-items: center;
+  gap: .3em;
+  font-size: clamp(1.8rem, 9vw, 3.2rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+.call-say { font-family: var(--body); font-weight: 700; font-size: 1rem; }
+
+/* ── 첫 화면 ── */
+.hero { background: var(--ink); overflow: hidden; }
+.hero-in { display: grid; gap: 2.5rem; padding-top: 2.5rem; }
+.hero h1 {
+  color: #fff;
+  font-size: clamp(2rem, 8vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+.lead { margin-top: 1.1rem; max-width: 30em; color: var(--on-ink); }
+.hours { margin-top: .9rem; font-size: .95rem; color: var(--on-ink); }
+/* 휴대폰: 육각형이 첫 화면 아래 끝에서 올라오듯 반쯤 잘려 보임 */
+.gem { width: min(80%, 22rem); justify-self: end; margin-bottom: -18%; }
+
+/* ── 공통 칸 ── */
+.sec { padding-block: 4rem; }
+.sec-tint { background: var(--ice); }
+.sec h2 { font-size: clamp(1.75rem, 6vw, 2.5rem); font-weight: 800; }
+.sec-lead { margin-top: .75rem; max-width: 32em; }
+section[id] { scroll-margin-top: 1rem; }
+
+/* ── 하는 일 ── */
+.work-list { display: grid; margin-top: 2rem; border-bottom: 1px solid var(--rule); }
+.work { padding-block: 1.75rem; border-top: 1px solid var(--rule); }
+.work h3 { font-size: 1.375rem; font-weight: 700; }
+.work p { margin-top: .5rem; max-width: 34em; }
+.price { color: var(--ink); font-weight: 700; }
+.price small { font-size: .875rem; font-weight: 400; color: var(--ink-2); }
+/* 실적 숫자는 그 일 바로 아래에, 로고 육각형 표시와 함께 */
+.work .proof {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin-top: 1rem;
+  font-family: var(--display);
+  font-weight: 700;
+  color: var(--blue);
+}
+.proof::before {
+  content: "";
+  width: .9em;
+  height: .78em;
+  background: var(--sky);
+  clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
+}
+
+/* ── 현장 사진: 3장을 크게. 휴대폰은 한 줄에 한 장 ── */
+.photos { display: grid; gap: 2rem; margin: 2rem 0 0; padding: 0; list-style: none; }
+.photos img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; border-radius: .5rem; }
+/* 사진에 찍힌 상호 글씨가 반쯤 잘리지 않게 왼쪽 기준으로 자름 */
+.photos .pos-left { object-position: left center; }
+.photos figcaption { margin-top: .6rem; font-weight: 700; color: var(--ink); }
+
+.btn-line {
+  display: inline-flex;
+  margin-top: 2rem;
+  padding: .75rem 1.1rem;
+  border: 2px solid var(--blue);
+  border-radius: .5rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+.btn-line:hover { background: var(--blue); color: #fff; }
+
+/* ── 임대 상품·블로그 소식: 같은 카드 격자 ── */
+.goods, .blog {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.75rem 1rem;
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.goods a, .blog a { display: flex; flex-direction: column; color: var(--ink); text-decoration: none; }
+.goods img, .blog img, .blog-noimg {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: .5rem;
+  background: #fff;
+}
+.blog-title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  margin-top: .65rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+.blog a:hover .blog-title, .goods a:hover .goods-name { color: var(--blue); text-decoration: underline; }
+.blog time { margin-top: .3rem; font-size: .875rem; color: var(--ink-2); }
+/* 상품 이름은 자르지 않고 다 보임 */
+.goods-name { margin-top: .65rem; font-weight: 700; line-height: 1.45; }
+.goods-price { margin-top: .3rem; font-family: var(--display); font-weight: 800; font-size: 1.2rem; }
+.goods-note { margin-top: 1.5rem; font-size: .875rem; }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ── 자주 묻는 질문 ── */
+.faq { max-width: 46rem; margin-top: 1.5rem; border-top: 1px solid var(--rule); }
+.faq details { border-bottom: 1px solid var(--rule); }
+.faq summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 0;
+  font-weight: 700;
+  color: var(--ink);
+  cursor: pointer;
+  list-style: none;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: "+";
+  font-family: var(--display);
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--blue);
+}
+.faq details[open] summary::after { content: "−"; }
+.faq details p { max-width: 36em; padding-bottom: 1.25rem; }
+
+/* ── 연락처 ── */
+.contact { background: var(--ink); color: var(--on-ink); }
+.contact h2 { color: #fff; }
+.contact-in { display: grid; gap: 2.5rem; }
+.info { display: grid; gap: 1.25rem; margin: 0; }
+.info dt { font-size: .875rem; font-weight: 700; color: var(--sky); }
+.info dd { margin: .15rem 0 0; color: #fff; }
+.info a { color: #fff; }
+
+.foot {
+  padding-block: 1.5rem;
+  background: var(--ink);
+  border-top: 1px solid rgba(255, 255, 255, .12);
+  color: var(--on-ink);
+  font-size: .875rem;
+}
+
+/* ── 휴대폰 아래 고정 전화 막대 ── */
+.callbar {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .5rem;
+  padding: .9rem 1rem calc(.9rem + env(safe-area-inset-bottom));
+  background: var(--sun);
+  color: var(--ink);
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.15rem;
+  text-decoration: none;
+  box-shadow: 0 -1px 0 rgba(10, 51, 82, .2);
+  transition: transform .2s ease, visibility .2s;
+}
+.callbar.is-hidden { transform: translateY(100%); visibility: hidden; }
+
+/* ── 넓은 화면 ── */
+@media (min-width: 760px) {
+  .call-lg { width: fit-content; }
+  .work-list { grid-template-columns: 1fr 1fr; column-gap: 3rem; }
+  .info { grid-template-columns: 1fr 1fr; gap: 1.5rem 2.5rem; }
+}
+
+@media (min-width: 960px) {
+  body { padding-bottom: 0; }
+  .callbar { display: none; }
+  .menu { width: auto; margin: 0; padding: 0; border: 0; overflow: visible; }
+  .top .call { display: inline-flex; }
+  .hero-in { grid-template-columns: 1.2fr 1fr; align-items: center; padding-block: 5rem; }
+  .gem { width: 100%; max-width: 28rem; margin: 0; justify-self: center; }
+  /* 첫 장은 왼쪽에 크게, 나머지 두 장은 오른쪽에 위아래로 */
+  .photos { grid-template-columns: 2fr 1fr; gap: 1.5rem; }
+  .photos li:first-child { grid-row: span 2; }
+  .photos li:first-child figure { display: flex; flex-direction: column; height: 100%; }
+  .photos li:first-child img { flex: 1; min-height: 0; aspect-ratio: auto; }
+  .goods, .blog { grid-template-columns: repeat(3, 1fr); gap: 2.5rem 1.5rem; }
+  .contact-in { grid-template-columns: 1fr 1fr; align-items: start; }
+  .info { margin-top: 3.4rem; }
+  .sec { padding-block: 5.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .callbar { transition: none; }
+}
